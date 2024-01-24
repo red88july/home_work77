@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react';
+import FilePresentIcon from '@mui/icons-material/FilePresent';
 import {Button, Grid, TextField} from '@mui/material';
 
 interface Props {
@@ -47,7 +48,12 @@ const FileInput: React.FC<Props> = ({onChange, name, label}) => {
                     />
                 </Grid>
                 <Grid item>
-                    <Button variant="contained" onClick={activateInput}>Browse</Button>
+                    <Button
+                      startIcon={<FilePresentIcon/>}
+                      variant="contained"
+                      onClick={activateInput}>
+                      Browse
+                    </Button>
                 </Grid>
             </Grid>
         </>

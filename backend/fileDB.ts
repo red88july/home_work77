@@ -1,10 +1,10 @@
 import {promises as fs} from 'fs';
-import {Message, RequestPostMessage} from "./types";
+import {Message} from "./types";
 import crypto from "crypto";
 
 const fileName = './db.json';
 
-let data: RequestPostMessage[] = [];
+let data: Message[] = [];
 
 const fileDB = {
 
@@ -18,14 +18,12 @@ const fileDB = {
     },
 
     async getItems() {
-        return data.slice(-30).reverse();
+        return data;
     },
 
     async addItem(item: Message) {
         const id = crypto.randomUUID();
-        const datetime = new Date().toISOString();
-        const message = {id, datetime, ...item};
-
+        const message = {id, ...item};
         data.push(message);
         await this.save();
 
