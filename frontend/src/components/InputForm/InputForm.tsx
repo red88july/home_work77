@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import {useAppDispatch} from '../../app/hooks';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {postMessage} from '../../containers/messagesSlice/messagesThunks';
-import {Box, Button, TextField} from '@mui/material';
+import {Box, Button, CircularProgress, TextField} from '@mui/material';
 import FileInput from '../FileInput/FileInput';
 import {Message} from '../../types';
 import SendIcon from '@mui/icons-material/Send';
+import {sendMessageToServer} from '../../containers/messagesSlice/messagesSlice.ts';
 
 const InputForm = () => {
   const dispatch = useAppDispatch();
+  const sendToServerMessage = useAppSelector(sendMessageToServer);
 
   const [message, setMessage] = useState<Message>({
     author: '',
@@ -38,7 +40,6 @@ const InputForm = () => {
     }
   };
 
-
   const onsFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -53,7 +54,6 @@ const InputForm = () => {
       }));
     }
   };
-
 
   return (
     <Box sx={{marginTop: 10}}>
@@ -85,13 +85,14 @@ const InputForm = () => {
             name="image"
             label="Choose file"
           />
-          <Box maxWidth="sx">
+          <Box maxWidth="sx" marginTop={2}>
             <Button
               startIcon={<SendIcon/>}
               variant="contained"
               color="primary"
-              type="submit">
-              Send
+              type="submit"
+              disabled={sendToServerMessage}>
+              {sendToServerMessage ? <CircularProgress/> : 'Send'}
             </Button>
           </Box>
         </Box>

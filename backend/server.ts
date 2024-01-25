@@ -1,14 +1,15 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import messagesRouter from "./routers/messages";
 import fileDB from "./fileDB";
 
 const app = express();
-const port = 8000;
+const port = 8080;
+
+app.use(express.static('public'));
+app.use(express.json());
 app.use(cors());
 
-app.use(bodyParser.json())
 app.use('/messages', messagesRouter);
 
 const run = async () => {

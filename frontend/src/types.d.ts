@@ -8,16 +8,11 @@ export interface GetMessages {
   id: string;
   author: string;
   message: string;
-  image: File | null;
+  image: string | null;
 }
 
 export type ApiMessages = Omit<GetMessages, 'id'>
 
 export interface MessagesList {
   [id: string]: ApiMessages;
-}
-
-export interface MessageLocal {
-  author: string;
-  message: string;
 }

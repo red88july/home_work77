@@ -2,10 +2,18 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {GetMessages, Message, MessagesList} from '../../types';
 import axiosApi from '../../axiosApi';
 
-
 export const postMessage = createAsyncThunk<void, Message>(
   'message/postMessage', async (message) => {
-    await axiosApi.post('/messages', message)
+
+    const formData = new FormData();
+    formData.append('author', message.author);
+    formData.append('message', message.message);
+
+    if(message.image) {
+      formData.append('image', message.image);
+    }
+
+    await axiosApi.post('/messages', formData)
   }
 )
 

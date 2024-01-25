@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {GetMessages, Message} from '../../types';
 import {getAllMessages, postMessage} from './messagesThunks';
+import {RootState} from '../../app/store';
 
 interface MessagesState {
   message: Message[],
@@ -42,3 +43,5 @@ export const messagesSlice = createSlice({
 })
 
 export const messageReducer = messagesSlice.reducer;
+export const sendMessageToServer = (state: RootState) => state.message.isPostMessageLoading;
+export const allMessages = (state: RootState) => state.message.messages;
