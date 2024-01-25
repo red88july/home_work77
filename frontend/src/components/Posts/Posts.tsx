@@ -12,6 +12,7 @@ const Posts = () => {
     dispatch(getAllMessages());
   }, [dispatch]);
 
+
   return (
     <Box maxWidth="md" border={2} padding={1}>
       {posts.map((post) => (
