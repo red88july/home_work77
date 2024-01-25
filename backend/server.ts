@@ -4,11 +4,13 @@ import messagesRouter from "./routers/messages";
 import fileDB from "./fileDB";
 
 const app = express();
-const port = 8080;
+const port = 8000;
+
+app.use(express.json());
+
+app.use(cors());
 
 app.use(express.static('public'));
-app.use(express.json());
-app.use(cors());
 
 app.use('/messages', messagesRouter);
 

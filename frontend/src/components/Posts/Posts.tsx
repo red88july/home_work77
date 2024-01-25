@@ -12,14 +12,15 @@ const Posts = () => {
     dispatch(getAllMessages());
   }, [dispatch]);
 
-
   return (
     <Box maxWidth="md" border={2} padding={1}>
       {posts.map((post) => (
         <div key={post.id}>
           <div>Author: {post.author}</div>
           <div>Message: {post.message}</div>
-            <img src={post.image} alt="Post Image" />
+          <img src={post.image}
+               alt="Post Image" />
+
         </div>
       ))}
     </Box>

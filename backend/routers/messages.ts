@@ -7,7 +7,6 @@ const messagesRouter = Router();
 
 messagesRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
     try {
-        console.log(req.body);
         if (!req.body.message) {
             return res.status(422).send({error: `Message is not to be an empty`});
         }
